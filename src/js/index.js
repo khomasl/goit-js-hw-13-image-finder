@@ -2,7 +2,7 @@ import {notifyAlert, notifyError} from './notify.js';
 import debounce from 'lodash/debounce';
 import { input, result } from "./refs.js";
 import {renderedCountriesList, renderedCountryData} from './markup.js';
-import fetchCountries from './fetchCountries.js';
+import fetchCountries from './apiService.js';
 
 input.addEventListener('input', debounce(onSearchCountryChange, 500));
 

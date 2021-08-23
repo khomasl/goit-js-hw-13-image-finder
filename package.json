@@ -1,5 +1,5 @@
 {
-  "name": "goit-js-hw-12-countries",
+  "name": "goit-js-hw-13-image-finder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,21 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/js/index.js",
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-12-countries/",
+    "build": "parcel build src/*.html --public-url /goit-js-hw-13-image-finder/",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/khomasl/goit-js-hw-12-countries.git"
+    "url": "git+https://github.com/khomasl/goit-js-hw-13-image-finder.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/khomasl/goit-js-hw-12-countries/issues"
+    "url": "https://github.com/khomasl/goit-js-hw-13-image-finder/issues"
   },
-  "homepage": "https://khomasl.github.io/goit-js-hw-12-countries",
+  "homepage": "https://khomasl.github.io/goit-js-hw-13-image-finder",
   "devDependencies": {
     "handlebars-loader": "^1.7.1",
     "parcel-bundler": "^1.12.5",
