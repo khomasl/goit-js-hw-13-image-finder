@@ -1,39 +1,70 @@
-import { result } from "./refs.js";
+import { body, result } from "./refs.js";
 
-export function renderedCountriesList(markup){
-    result.innerHTML = createCountriesListMarkup(markup);
+export function renderForm () {
+    const markup = createFormMarkup();
+    body.insertAdjacentHTML('afterbegin', markup);
+}
+function renderButton () {
+    const markup = `<button class="button">Load more</button>`;
+    result.insertAdjacentHTML('afterend', markup);
 }
 
-export function renderedCountryData(country) {
-    result.innerHTML = createCountryDataMarkup(country);
-}
-///////
-function createCountriesListMarkup(countries){
-    const listCountries = countries.map(country => `<li>${country.name}</li>`).join('');
-    return `<ul class="js-list">${listCountries}</ul>`;
+export function renderGallery (images) {
+    const markup = createGalleryMarkup(images);
+    result.innerHTML = markup;
+    
+    renderButton ();
+    const btn = document.querySelector('.button');
+    btn.addEventListener('click', onLoadMoreImages);
 }
 
-function createCountryDataMarkup(country){
-    const listLanguages = country.languages.map(language => `<li>${language.name}</li>`).join('');
-    //const listLanguages = `<li></li>`;
+export function loadMoreImages (images) {
+    const gallery = document.querySelector(".gallery");
 
+    const markup = addGalleryMarkup(images);
+    gallery.insertAdjacentHTML('beforeend', markup);
+}
+
+const createFormMarkup = () => 
+  `
+    <form class="search-form" id="search-form">
+        <input
+        class="input"
+        type="text"
+        name="query"
+        autocomplete="off"
+        placeholder="Search images..."
+        />
+    </form>
+  `
+
+const addGalleryMarkup = (images) => images.map(image => `<li>${createCardImageMarkup (image)}</li>`).join('');
+
+const createGalleryMarkup = (images) => `<ul class="gallery">${addGalleryMarkup (images)}</ul>`
+
+function createCardImageMarkup (image) {
     return `
-      <p class="country__name">${country.name}</p>
-      <div class="country">
-        <div class="data">
-            <p class="country__data">Capital: <span>${country.capital}</span></p>
-            <p class="country__data">Population: <span>${country.population}</span></p>
-            <p class="country__data">Languages:</p>
-            <ul>
-                ${listLanguages}
-            </ul>    
+      <div class="photo-card">
+        <img src="${image.webformatURL}" alt="${image.tags}" />
+    
+        <div class="stats">
+            <p class="stats-item">
+                <i class="material-icons">thumb_up</i>
+                ${image.likes}
+            </p>
+            <p class="stats-item">
+                <i class="material-icons">visibility</i>
+                ${image.views}
+            </p>
+            <p class="stats-item">
+                <i class="material-icons">comment</i>
+                ${image.comments}
+            </p>
+            <p class="stats-item">
+                <i class="material-icons">cloud_download</i>
+                ${image.downloads}
+            </p>
         </div>
-        <div class="flag">
-            <img src=${country.flag}
-                 width=300
-                 height=200
-            >
-        </div>
-      </div>  
-    `;
+      </div>
+    `
 }

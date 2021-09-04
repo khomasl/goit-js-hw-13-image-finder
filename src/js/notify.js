@@ -1,16 +1,16 @@
 import { alert, error } from '../../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 
-export function notifyAlert () {
+export function notifyAlert (txt) {
     alert({
         delay: 4000,
-        text: "Don`t found. Please enter a correct query!"
+        text: txt,
       });
 }
 
-export function notifyError() {
+export function notifyError(txt) {
     error({
         delay: 4000,
-        text: "Too many matches found. Please enter a more specific query!"
+        text: txt
       });
 };
