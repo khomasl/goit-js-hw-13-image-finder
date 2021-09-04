@@ -22,8 +22,6 @@ body {
 }
 
 .input{
-  /* padding: 30px; */
-  /* display: block; */
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -31,7 +29,6 @@ body {
   font-size: 16px;
   font-weight: 500;
   margin-top: 10px;
-  /* border:darkblue; */
 }
 
 .gallery {
@@ -56,13 +53,8 @@ img{
 }
 
 .stats{
-/* margin-top: auto; */
   display:flex ;
   justify-content:space-evenly;
-}
-
-.stats-item{
-  /* margin-top: auto; */
 }
 
 .button{
@@ -71,42 +63,9 @@ img{
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 20px;
-  /* padding-left: auto;
-  padding-right: auto; 
-  align-items: center;*/
   background:cornflowerblue;
   border-radius: 10%;
   color: #fff;
-  font-size: 18px;
-}
-
-.country{
-  display: flex;
-  width: 510px;
-  justify-content: space-between;
-}
-
-.country__name{
-  width: 510px;
-  
-  text-align: center;
-  font-size: 26px;
-  font-weight: 900;
-}
-
-.country__data{
-font-weight: 900;
-}
-
-span{
-  font-weight: 400;
-}
-
-.data{
-  padding-right: 0px;
-}
-
-.js-list{
   font-size: 18px;
 }
 

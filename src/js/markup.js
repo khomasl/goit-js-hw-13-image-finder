@@ -1,33 +1,39 @@
-import { body, result } from "./refs.js";
+import { body } from "./refs.js";
 
-export function renderForm () {
-    const markup = createFormMarkup();
-    body.insertAdjacentHTML('afterbegin', markup);
-}
-function renderButton () {
-    const markup = `<button class="button">Load more</button>`;
-    result.insertAdjacentHTML('afterend', markup);
-}
-
+// export function renderGalleryMarkup (images) {
 export function renderGallery (images) {
     const markup = createGalleryMarkup(images);
-    result.innerHTML = markup;
-    
-    renderButton ();
-    const btn = document.querySelector('.button');
-    btn.addEventListener('click', onLoadMoreImages);
-}
 
-export function loadMoreImages (images) {
     const gallery = document.querySelector(".gallery");
-
-    const markup = addGalleryMarkup(images);
     gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-const createFormMarkup = () => 
-  `
-    <form class="search-form" id="search-form">
+export function renderForm () {
+    body.insertAdjacentHTML('afterbegin', createFormMarkup);
+}
+
+export function renderGalleryContainer () {
+    const markup = '<ul class="gallery"></ul>';
+    renderMarkup(markup);
+}
+
+export function clearGalleryContainer () {
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {body.removeChild(gallery)}  
+}
+
+export function renderIntersection () {
+    const markup = `<div id="intersection"></div>`;
+    renderMarkup(markup);
+}
+
+function renderMarkup(markup) {
+    const searchForm = document.querySelector("#search-form");
+    searchForm.insertAdjacentHTML('afterend', markup);
+}
+
+const createFormMarkup = 
+  ` <form class="search-form" id="search-form">
         <input
         class="input"
         type="text"
@@ -36,16 +42,14 @@ const createFormMarkup = () =>
         placeholder="Search images..."
         />
     </form>
-  `
+  `;
 
-const addGalleryMarkup = (images) => images.map(image => `<li>${createCardImageMarkup (image)}</li>`).join('');
-
-const createGalleryMarkup = (images) => `<ul class="gallery">${addGalleryMarkup (images)}</ul>`
+const createGalleryMarkup = (images) => images.map(image => `<li>${createCardImageMarkup (image)}</li>`).join('');
 
 function createCardImageMarkup (image) {
     return `
       <div class="photo-card">
-        <img src="${image.webformatURL}" alt="${image.tags}" />
+        <img src="${image.webformatURL}" alt="${image.tags}" data-largeimage="${image.largeImageURL}"/>
     
         <div class="stats">
             <p class="stats-item">
@@ -68,3 +72,4 @@ function createCardImageMarkup (image) {
       </div>
     `
 }
+
